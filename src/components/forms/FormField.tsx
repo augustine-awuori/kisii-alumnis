@@ -17,7 +17,6 @@ export default function FormField({
   Icon,
   name,
   label,
-  onChange,
   ...options
 }: Props) {
   return (
@@ -30,7 +29,6 @@ export default function FormField({
         id={name}
         placeholder="Enter your full name"
         className="h-12 border-2"
-        onChange={(e) => e.currentTarget.value}
         {...options}
       />
       {error && (
