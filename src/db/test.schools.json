@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "693304d4d4dbad14b557ce0d"
+  },
+  "label": "SCHOOL OF AGRICULTURE AND NATURAL RESOURCES MANAGEMENT"
+},
+{
+  "_id": {
+    "$oid": "693304e5d4dbad14b557ce0e"
+  },
+  "label": "SCHOOL OF ARTS AND SOCIAL SCIENCES"
+},
+{
+  "_id": {
+    "$oid": "693304f4d4dbad14b557ce0f"
+  },
+  "label": "SCHOOL OF BUSINESS AND ECONOMICS"
+},
+{
+  "_id": {
+    "$oid": "69330516d4dbad14b557ce10"
+  },
+  "label": "SCHOOL OF EDUCATION AND HUMAN RESOURCE DEVELOPMENT"
+},
+{
+  "_id": {
+    "$oid": "6933052ad4dbad14b557ce11"
+  },
+  "label": "SCHOOL OF HEALTH SCIENCES"
+},
+{
+  "_id": {
+    "$oid": "6933053cd4dbad14b557ce12"
+  },
+  "label": "SCHOOL OF INFORMATION SCIENCE & TECHNOLOGY"
+},
+{
+  "_id": {
+    "$oid": "69330551d4dbad14b557ce13"
+  },
+  "label": "SCHOOL OF LAW"
+},
+{
+  "_id": {
+    "$oid": "69330563d4dbad14b557ce14"
+  },
+  "label": "SCHOOL OF PURE AND APPLIED SCIENCES"
+}]
