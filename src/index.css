@@ -30,6 +30,25 @@
 @utility text-primary-foreground {
   color: hsl(var(--primary-foreground));
 }
+/* ────── ADD THESE LINES TO index.css ────── */
+@utility bg-card {
+  background-color: hsl(var(--card));
+}
+@utility text-card-foreground {
+  color: hsl(var(--card-foreground));
+}
+@utility border-input {
+  border-color: hsl(var(--input));
+}
+@utility bg-popover {
+  background-color: hsl(var(--popover));
+}
+@utility text-popover-foreground {
+  color: hsl(var(--popover-foreground));
+}
+@utility ring-offset-background {
+  --tw-ring-offset-color: hsl(var(--background));
+}
 
 /* ────── Your beautiful design tokens (unchanged) ────── */
 @layer base {
