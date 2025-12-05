@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, ChevronsUpDown, School } from "lucide-react";
+import type { FieldError } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import type { FieldError } from "react-hook-form";
 
 type Item = { _id: string; label: string };
 
@@ -41,6 +41,35 @@ export default function FormSelect({
     onValueSelect(item._id);
     setSelectedItem(item);
     setOpen(false);
+  };
+
+  const handleFilter = (value: string, search: string) => {
+    if (!search) return 1;
+
+    const item = items.find((i) => i._id === value);
+    if (!item) return 0;
+
+    const label = item.label.toLowerCase();
+    const query = search.toLowerCase();
+
+    // 1. Exact substring → highest priority
+    if (label.includes(query)) return 1;
+
+    // 2. Match acronyms / initials (e.g. "sist" → "School of Information Science & Technology")
+    const words = label.split(/\s+/);
+    const initials = words.map((w) => w[0]).join("");
+    const shortForms = words.map((w) => w.slice(0, 3)).join(""); // sist, agr, etc.
+
+    if (initials.includes(query) || shortForms.includes(query)) return 1;
+
+    // 3. Match if query letters appear in order (fuzzy)
+    let i = 0;
+    for (const char of query) {
+      i = label.indexOf(char, i);
+      if (i === -1) return 0;
+      i++;
+    }
+    return 0.9; // slightly lower than exact match
   };
 
   return (
@@ -69,8 +98,8 @@ export default function FormSelect({
             align="start"
             sideOffset={4}
           >
-            <Command className="rounded-lg bg-green-500">
-              <CommandInput placeholder="Search school..." />
+            <Command className="rounded-lg bg-green-500" filter={handleFilter}>
+              <CommandInput placeholder={`Search ${title.toLowerCase()}...`} />
               <CommandList>
                 <CommandEmpty>No {title.toLowerCase()} found.</CommandEmpty>
                 <CommandGroup>
