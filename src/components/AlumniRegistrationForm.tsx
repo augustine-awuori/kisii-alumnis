@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import FormSelect from "./forms/FormSelect";
 import FormField from "./forms/FormField";
+import service from "@/services/alumnis";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -77,21 +78,20 @@ export function AlumniRegistrationForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const existingData = JSON.parse(
-      localStorage.getItem("kisu_alumni") || "[]"
-    );
-    existingData.push({ ...data, timestamp: new Date().toISOString() });
-    localStorage.setItem("kisu_alumni", JSON.stringify(existingData));
-
-    toast({
-      title: "Registration Successful!",
-      description: `Thank you, ${data.name}. Welcome to the alumni family!`,
-    });
-
-    reset();
+    const res = await service.saveAlumni(data);
     setIsSubmitting(false);
+
+    if (res.ok) {
+      reset();
+      toast({
+        title: "Registration Successful!",
+        description: `Thank you, ${data.name}. Welcome to the alumni family!`,
+      });
+    } else
+      toast({
+        title: "Something failed! not your fault",
+        description: "Try again later",
+      });
   };
 
   return (
