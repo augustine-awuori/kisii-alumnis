@@ -23,4 +23,12 @@ const getAlumnis = async () => {
   }
 };
 
-export default { saveAlumni, getAlumnis };
+const getAlumnisCount = async () => {
+  try {
+    return processResponse(await apiClient.get(`${endpoint}/count`));
+  } catch (error) {
+    return getFailedResponse(error);
+  }
+};
+
+export default { saveAlumni, getAlumnis, getAlumnisCount };
