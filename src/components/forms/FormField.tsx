@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import type { FieldError } from "react-hook-form";
+import { useFormContext, type FieldError } from "react-hook-form";
 import type { InputProps } from "react-day-picker";
 
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,8 @@ export default function FormField({
   label,
   ...options
 }: Props) {
+  const { setValue } = useFormContext();
+
   return (
     <div className="space-y-2">
       <Label htmlFor="name" className="flex items-center gap-2 font-medium">
@@ -29,6 +31,7 @@ export default function FormField({
         id={name}
         placeholder="Enter your full name"
         className="h-12 border-2"
+        onChange={(e) => setValue(name, e.currentTarget.value)}
         {...options}
       />
       {error && (
