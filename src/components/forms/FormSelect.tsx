@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Check, ChevronsUpDown, School } from "lucide-react";
-import type { FieldError } from "react-hook-form";
-import { cn } from "@/lib/utils";
+import { useFormContext } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   Command,
   CommandEmpty,
@@ -22,23 +22,21 @@ import {
 type Item = { _id: string; label: string };
 
 interface Props {
-  error?: FieldError;
   items: Item[];
   title: string;
-  onValueSelect: (valueId: string) => void;
+  name: string;
 }
 
-export default function FormSelect({
-  error,
-  onValueSelect,
-  items,
-  title,
-}: Props) {
+export default function FormSelect({ name, items, title }: Props) {
   const [selectedItem, setSelectedItem] = useState<Item>();
   const [open, setOpen] = useState(false);
+  const {
+    formState: { errors },
+    setValue,
+  } = useFormContext();
 
   const handleValueSelect = (item: Item) => {
-    onValueSelect(item._id);
+    setValue(name, item._id);
     setSelectedItem(item);
     setOpen(false);
   };
@@ -125,7 +123,11 @@ export default function FormSelect({
             </Command>
           </PopoverContent>
         </Popover>
-        {error && <p className="text-sm text-destructive">{error.message}</p>}
+        {errors[name]?.message && (
+          <p className="text-sm text-destructive">
+            {errors[name]?.message as string}
+          </p>
+        )}
       </div>
     </div>
   );
