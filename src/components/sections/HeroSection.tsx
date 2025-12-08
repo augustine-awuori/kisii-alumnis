@@ -1,6 +1,12 @@
 import { GraduationCap } from "lucide-react";
 
-export default function Hero() {
+import logo from "@/assets/icon.png";
+
+interface Props {
+  onSparklerClick: VoidFunction;
+}
+
+export default function Hero({ onSparklerClick }: Props) {
   return (
     <header className="relative overflow-hidden bg-gradient-hero py-16 md:py-24">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30" />
@@ -19,10 +25,30 @@ export default function Hero() {
           <p className="text-xl md:text-2xl font-display text-primary-foreground/90 mb-2">
             Alumni Registration Portal
           </p>
-          <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg">
+          <p className="text-primary-foreground/70 max-w-2xl mx-auto text-lg leading-relaxed">
             Join our growing community of distinguished graduates. Register
             today and stay connected with your alma mater.
           </p>
+
+          {/* Sparkler – subtle, elegant, and proud */}
+          <div
+            className="mt-8 flex items-center justify-center gap-3 opacity-80 cursor-pointer hover:opacity-100 transition-opacity"
+            onClick={onSparklerClick}
+          >
+            <span className="text-primary-foreground/70 text-sm">
+              Powered by
+            </span>
+            <div className="flex items-center gap-2">
+              <img
+                src={logo}
+                alt="Sparkler"
+                className="w-6 h-6 rounded-lg shadow-md ring-2 ring-primary-foreground/30"
+              />
+              <span className="text-primary-foreground font-semibold text-xl tracking-tight">
+                Sparkler
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
