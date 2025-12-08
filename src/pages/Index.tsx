@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import FooterSection from "@/components/sections/FooterSection";
 import Hero from "@/components/sections/HeroSection";
@@ -9,15 +9,6 @@ import StatsSection from "@/components/sections/StatsSection";
 const Index = () => {
   const [isSparklerModalOpen, setIsSparklerModalOpen] = useState(false);
 
-  const footerRef = useRef<HTMLElement>(null);
-
-  const scrollToFooter = () => {
-    footerRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   const handleSparkleModalVisibility = () => {
     const hasSeen = localStorage.getItem("sparkler_modal_seen_v2");
     if (!hasSeen) {
@@ -27,10 +18,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Hero onSparklerClick={scrollToFooter} />
+      <Hero />
       <StatsSection />
       <RegistrationSection onDoneRegistration={handleSparkleModalVisibility} />
-      <FooterSection ref={footerRef} />
+      <FooterSection />
       <SparklerWelcomeModal
         changeVisibility={setIsSparklerModalOpen}
         isOpen={isSparklerModalOpen}
