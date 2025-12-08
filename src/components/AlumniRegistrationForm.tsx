@@ -19,7 +19,11 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function AlumniRegistrationForm() {
+interface Props {
+  onDoneRegistration: VoidFunction;
+}
+
+export function AlumniRegistrationForm({ onDoneRegistration }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data: FormData) => {
@@ -28,6 +32,7 @@ export function AlumniRegistrationForm() {
     setIsSubmitting(false);
 
     if (res.ok) {
+      onDoneRegistration();
       toast({
         title: "Registration Successful!",
         description: `Thank you, ${data.name}. Welcome to the alumni family!`,

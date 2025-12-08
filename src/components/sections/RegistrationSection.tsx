@@ -1,6 +1,10 @@
 import { AlumniRegistrationForm } from "../AlumniRegistrationForm";
 
-export default function RegistrationSection() {
+interface Props {
+  onDoneRegistration: VoidFunction;
+}
+
+export default function RegistrationSection({ onDoneRegistration }: Props) {
   return (
     <main className="py-12 md:py-20">
       <div className="container mx-auto px-4">
@@ -22,7 +26,7 @@ export default function RegistrationSection() {
             className="bg-card rounded-2xl shadow-elevated p-8 md:p-10 opacity-0 animate-fade-up"
             style={{ animationDelay: "300ms" }}
           >
-            <AlumniRegistrationForm />
+            <AlumniRegistrationForm onDoneRegistration={onDoneRegistration} />
           </div>
 
           <p
