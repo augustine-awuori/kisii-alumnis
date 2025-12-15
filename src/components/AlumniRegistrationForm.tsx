@@ -15,7 +15,7 @@ const formSchema = z.object({
   regNo: z.string().min(13, "Registration number is required").max(20),
   school: z.string().min(1, "Please select a school"),
   course: z.string().min(2, "Course name is required").max(100),
-  phone: z.number().min(10, "Phone is required").max(20),
+  phone: z.string().min(10, "Phone is required").max(20),
 });
 
 export type FormData = z.infer<typeof formSchema>;
