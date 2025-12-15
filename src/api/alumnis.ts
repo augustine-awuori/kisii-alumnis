@@ -1,13 +1,9 @@
 import apiClient, { getFailedResponse, processResponse } from "./client";
+import type { FormData } from "@/components/AlumniRegistrationForm";
 
 const endpoint = "/alumnis";
 
-const saveAlumni = async (data: {
-  regNo: string;
-  name: string;
-  school: string;
-  course: string;
-}) => {
+const saveAlumni = async (data: FormData) => {
   try {
     return processResponse(await apiClient.post(endpoint, data));
   } catch (error) {

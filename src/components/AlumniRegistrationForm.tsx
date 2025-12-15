@@ -15,9 +15,10 @@ const formSchema = z.object({
   regNo: z.string().min(13, "Registration number is required").max(20),
   school: z.string().min(1, "Please select a school"),
   course: z.string().min(2, "Course name is required").max(100),
+  phone: z.number().min(10, "Phone is required").max(20),
 });
 
-type FormData = z.infer<typeof formSchema>;
+export type FormData = z.infer<typeof formSchema>;
 
 interface Props {
   onDoneRegistration: VoidFunction;
@@ -67,6 +68,13 @@ export function AlumniRegistrationForm({ onDoneRegistration }: Props) {
         label="Course"
         placeholder="Enter your Course e..g., Bachelor of Computer Science"
         name="course"
+      />
+
+      <FormField
+        Icon={<User className="w-4 h-4 text-primary" />}
+        label="WhatsApp Number"
+        placeholder="Enter your WhatsApp number e..g., 2547... or 01.."
+        name="phone"
       />
 
       <Button
